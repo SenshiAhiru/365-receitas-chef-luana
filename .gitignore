@@ -5,3 +5,8 @@ original.html
 recover.mjs
 localize-images.mjs
 verification/
+.env.local
+private-source/
+
+.vercel
+.env*

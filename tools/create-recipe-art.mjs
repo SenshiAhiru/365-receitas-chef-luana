@@ -1,0 +1,21 @@
+import { mkdir, writeFile } from 'node:fs/promises';
+await mkdir('public/receitas/art', { recursive: true });
+const colors = { cafe:'#ecebd5',paes:'#f2e4d0',refeicoes:'#e3ebdc',lanches:'#efe6d5',doces:'#eadfd8',cremes:'#eee2c9',molhos:'#e1ead3',bebidas:'#e7ebd8' };
+const leaf = (x,y,rotation=0) => `<g transform="translate(${x} ${y}) rotate(${rotation})"><path d="M0 0Q-28-38 1-50Q31-25 0 0Z" fill="#718b42"/><path d="M0-3 1-40" stroke="#a5b66b" stroke-width="2"/></g>`;
+const dot = (x,y,r,c) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/>`;
+const plate = '<ellipse cx="203" cy="245" rx="125" ry="22" fill="#62704c" opacity=".1"/><ellipse cx="200" cy="163" rx="137" ry="100" fill="#fcfcf6"/><ellipse cx="200" cy="163" rx="118" ry="83" fill="none" stroke="#e4e7db" stroke-width="2"/>';
+const art = {
+ cafe: plate+'<ellipse cx="196" cy="177" rx="81" ry="49" fill="#af702f"/><ellipse cx="196" cy="167" rx="81" ry="49" fill="#e0ad62"/><ellipse cx="196" cy="157" rx="76" ry="45" fill="#b88038"/><ellipse cx="196" cy="146" rx="76" ry="45" fill="#edbf78"/>'+[[-25,-8],[10,8],[33,-12]].map(([x,y])=>`<ellipse cx="${196+x}" cy="${136+y}" rx="18" ry="10" fill="#f5e6b6" transform="rotate(-20 ${196+x} ${136+y})"/>`).join('')+dot(175,120,10,'#775879')+dot(188,116,8,'#69475d')+leaf(217,115,45),
+ paes:plate+'<path d="M112 183V130C112 76 267 67 283 131v56q-83 57-171-4Z" fill="#a9753f"/><path d="M112 170v-43c0-58 166-55 171 3v43q-84 53-171-3Z" fill="#d5aa70"/><path d="m150 113 17 36m22-48 17 36m22-35 17 30" stroke="#f2d4a2" stroke-width="9" stroke-linecap="round"/>'+leaf(300,198,70),
+ refeicoes:plate+Array.from({length:23},(_,i)=>`<ellipse cx="${130+(i*31)%127}" cy="${115+(i*17)%85}" rx="10" ry="5" fill="#ede1bd" transform="rotate(${i*17})"/>`).join('')+'<path d="m124 160 89-45 38 63-88 44Z" fill="#b77845"/><path d="m133 162 71-35m-64 50 73-36m-59 52 69-36" stroke="#dba470" stroke-width="5"/>'+leaf(259,150,60)+leaf(273,170,115)+dot(254,202,14,'#c96945')+dot(283,194,11,'#c96945'),
+ lanches:plate+'<path d="m112 170 51-68 47 77Z" fill="#ce974f"/><path d="m179 193 42-81 65 65Z" fill="#dda75c"/><path d="m126 163 35-46 31 51Z" fill="#e8bd7a"/><path d="m195 185 27-56 47 46Z" fill="#e9bf80"/>'+leaf(278,127,30)+dot(141,205,12,'#b9583d')+dot(161,214,10,'#bc6143'),
+ doces:plate+'<path d="m133 167 85-75 63 94-88 46-60-26Z" fill="#6f4130"/><path d="m133 167 60 31 88-42v31l-88 46-60-27Z" fill="#925b41"/><path d="m133 163 85-76 63 69-88 44Z" fill="#5d352a"/>'+dot(205,130,12,'#a74944')+dot(222,121,13,'#c66351')+leaf(229,111,30),
+ cremes:'<ellipse cx="200" cy="255" rx="112" ry="17" fill="#756843" opacity=".13"/><path d="M85 132q6 124 115 124t115-124" fill="#e2d7bd"/><ellipse cx="200" cy="132" rx="115" ry="72" fill="#fdfbf1"/><ellipse cx="200" cy="134" rx="102" ry="59" fill="#d79243"/><path d="M145 133q40-42 84-12t-5 39q-53 8-48-24" fill="none" stroke="#efca7f" stroke-width="5"/>'+leaf(226,135,60)+dot(171,113,3,'#826d37')+dot(192,164,3,'#826d37'),
+ molhos:plate+'<ellipse cx="205" cy="163" rx="84" ry="62" fill="#d7d9c3"/><ellipse cx="205" cy="153" rx="84" ry="57" fill="#f9f9ee"/><ellipse cx="205" cy="153" rx="72" ry="46" fill="#92a65b"/><path d="M168 151q32-31 59-4t-34 24" fill="none" stroke="#c2d28f" stroke-width="5"/>'+leaf(226,134,30)+leaf(131,210,-50)+dot(155,180,5,'#e7d6a6'),
+ bebidas:'<ellipse cx="200" cy="260" rx="64" ry="16" fill="#62704c" opacity=".12"/><path d="m133 87 15 145q52 35 104 0l15-145Z" fill="#dae0c5"/><path d="m141 103 14 126q44 29 89 0l14-126Z" fill="#e8ba65"/><ellipse cx="200" cy="103" rx="59" ry="24" fill="#f2d99b"/><path d="m213 116 21-74h33" fill="none" stroke="#fbfbf3" stroke-width="10" stroke-linecap="round"/>'+leaf(173,85,-35)+dot(185,105,5,'#f7e7b9'),
+};
+for (const [id, drawing] of Object.entries(art)) {
+ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect width="400" height="300" fill="${colors[id]}"/><path d="M0 260q200-60 400 0v40H0Z" fill="#fff" opacity=".12"/>${drawing}<path d="m34 42 12 5m-9-15 2 10m312 207 12 5m-9-15 2 10" stroke="#9da583" stroke-width="2" stroke-linecap="round" opacity=".6"/></svg>`;
+ await writeFile(`public/receitas/art/${id}.svg`,svg);
+}
+console.log('Created eight lightweight category illustrations.');

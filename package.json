@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "node server.mjs",
-    "build": "node build.mjs"
+    "build": "node build.mjs",
+    "test": "node --test tests/recipe-access.test.mjs",
+    "recipes:seal": "node tools/seal-recipes.mjs"
   }
 }
