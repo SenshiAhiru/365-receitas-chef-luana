@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.vercel/
+original.html
+recover.mjs
+localize-images.mjs
+verification/
