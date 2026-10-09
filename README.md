@@ -1,6 +1,8 @@
-# 365 Receitas — Chef Luana
+# Método 3S — Sabor Sem Sacrifícios
 
-Cópia da página pública https://as365receitascheflu.lovable.app/, recuperada em 09/10/2026 a pedido do proprietário, para preservar a versão atual antes de melhorias.
+Site: https://metodo3s.vercel.app/
+
+Base recuperada da página pública https://as365receitascheflu.lovable.app/ em 09/10/2026. A primeira revisão preserva o original no histórico Git. A identidade atual usa Método 3S, a promessa aprovada pelo proprietário e Marina Duarte como apresentadora virtual, com verde-oliva, creme e terracota. Estrutura das seções e preços originais foram mantidos.
 
 ## Executar
 
@@ -22,4 +24,6 @@ Acesse http://127.0.0.1:4187. `npm run build` gera `dist/`, configurado para pub
 
 O código foi recuperado da versão publicada: não é o projeto-fonte interno do Lovable. Os arquivos JavaScript estão compilados. Alterações futuras devem considerar tanto o HTML inicial quanto o código que o atualiza no navegador.
 
-Layout, textos, preços, links de checkout e integrações UTMify foram preservados. Apenas os scripts de telemetria exclusivos da infraestrutura Lovable foram removidos, pois seus endpoints não existem nesta hospedagem. Google Fonts e UTMify continuam sendo serviços externos. Os comentários e curtidas têm o comportamento local da página original, sem banco de dados.
+Os textos de marca, abertura, metadados e duas imagens de produto foram adaptados para o Método 3S. As imagens `metodo3s-banner.png` e `metodo3s-receitas.png` foram criadas com ImageGen a partir das referências originais e da personagem aprovada na conversa. O banner identifica Marina como apresentadora virtual na legenda da página.
+
+Preços, links de checkout e integrações UTMify foram preservados. Os scripts de telemetria exclusivos da infraestrutura Lovable foram removidos, pois seus endpoints não existem nesta hospedagem. Google Fonts e UTMify continuam sendo serviços externos. Os comentários e curtidas têm o comportamento local da página original, sem banco de dados.
