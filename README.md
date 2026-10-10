@@ -32,7 +32,7 @@ Preços, links de checkout e integrações UTMify foram preservados. Os scripts 
 
 `/receitas` é uma aplicação independente da página de vendas, com busca por nome/ingrediente, oito categorias, favoritos locais, lista de compras, ajuste de porções e modo de preparo. O plano Essencial recebe 365 receitas; o Completo recebe 500. O app oferece instruções para adicionar um atalho à tela inicial e requer internet para consultar conteúdo.
 
-As receitas são propostas editoriais e variações de preparos conhecidos, não receitas testadas em cozinha. Não há validação nutricional nem promessa de adequação clínica. O conteúdo usa a expressão “sem adição de açúcar” e explica açúcares naturais, alergênicos e cuidados de preparo. As imagens representam categorias ou preparações ilustrativas.
+As receitas são propostas editoriais e variações de preparos conhecidos, não receitas testadas em cozinha. Não há validação nutricional nem promessa de adequação clínica. O conteúdo usa a expressão “sem adição de açúcar” e explica açúcares naturais, alergênicos e cuidados de preparo. As 500 receitas usam fotos de pratos equivalentes, com reutilização em preparos semelhantes. Os créditos e licenças das novas fotos estão em `/receitas/creditos.html` e `public/receitas/photos/credits.json`. As imagens não são fotografias dos resultados testados. Para reaplicar a associação por tipo de preparo ao catálogo privado, use `node tools/apply-recipe-photos.mjs` antes de criptografar.
 
 ### Acesso e conteúdo privado
 

@@ -55,6 +55,11 @@ test('Complete plan has exactly 500 unique fully specified recipes', async () =>
   assert.ok(r.ingredients.every(i=>Number.isFinite(i.amount)&&i.amount>0),r.title);
   assert.ok(!r.ingredients.some(i=>/farinha de trigo|leite de vaca|melado|açúcar refinado/i.test(i.name)),r.title);
   assert.ok(readFileSync('public'+r.image).length>0,r.image);
+  assert.match(r.image, /\.(jpg|png|webp)$/i, 'Every recipe has a food photo');
+  if (r.image.startsWith('/receitas/photos/')) {
+   assert.ok(r.imageCredit?.author && r.imageCredit?.license, r.image);
+   assert.ok(r.imageCredit.source.startsWith('https://'), r.image);
+  }
  }
  assert.equal(getRecipes(request('/api/recipes?id=500',cookie)).status,200);
 });
