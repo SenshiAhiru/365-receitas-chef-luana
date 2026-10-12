@@ -19,7 +19,7 @@ http.createServer(async (req, res) => {
     res.end(Buffer.from(await response.arrayBuffer()));
     return;
   }
-  const route = pathname === '/' ? '/index.html' : ['/receitas','/receitas/'].includes(pathname) ? '/receitas/index.html' : pathname;
+  const route = pathname === '/' ? '/index.html' : ['/receitas','/receitas/'].includes(pathname) ? '/receitas/index.html' : ['/upsell','/upsell/'].includes(pathname) ? '/upsell/index.html' : pathname;
   const file = path.resolve(root, '.' + route);
   if (!file.startsWith(root + path.sep)) { res.writeHead(403).end(); return; }
   try {

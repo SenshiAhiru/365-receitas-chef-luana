@@ -4,7 +4,8 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "rewrites": [
-    { "source": "/receitas", "destination": "/receitas/index.html" }
+    { "source": "/receitas", "destination": "/receitas/index.html" },
+    { "source": "/upsell", "destination": "/upsell/index.html" }
   ],
   "functions": {
     "api/recipes.mjs": { "includeFiles": "private/recipes.enc.json" }
