@@ -43,3 +43,11 @@ As variáveis `RECIPE_SECRET` (32 bytes aleatórios em base64), `RECIPE_ESSENTIA
 O conteúdo editorial editável e seu gerador ficam em `private-source/`, também ignorado pelo Git. Após editar `private-source/recipes.json`, execute `npm run recipes:seal`, `npm test` e `npm run build`. Faça backup privado do conteúdo editorial e da chave: o clone público sozinho não consegue recuperar as receitas. Os testes completos exigem a chave local correspondente ao catálogo criptografado.
 
 O fluxo de compra não foi alterado nem integrado a uma plataforma de checkout. Configure na plataforma a entrega do endereço `/receitas` e do código correspondente ao plano adquirido.
+
+## Cardápio Inteligente 3S
+
+`/cardapio` é o entregável independente do upsell: 90 dias de sugestões com quatro refeições por dia, 13 semanas (a última com seis dias), listas de compras por semana, ajuste de porções, troca de pratos, progresso, preparo antecipado, substituições e modo de preparo. O planejamento usa receitas da coleção essencial e inclui seus detalhes dentro do próprio produto; não depende de uma sessão em `/receitas`.
+
+`CARDAPIO_ACCESS_CODE` é uma variável sensível na Vercel e em `.env.local`, nunca no frontend. A sessão `m3s_cardapio` usa assinatura com domínio separado e cookie HttpOnly. Os códigos e cookies dos dois produtos não são intercambiáveis. O catálogo continua criptografado, com a chave existente `RECIPE_SECRET`; `api/cardapio.mjs` só responde após autenticação. O código compartilhado não verifica compradores individuais e a limitação de tentativas é por instância.
+
+Trocas, data de início, porções, progresso e itens conferidos ficam no armazenamento local do navegador. Não há sincronização entre dispositivos nem funcionamento offline. Ao trocar uma refeição ou ajustar porções, as compras são recalculadas e os itens conferidos relevantes são desmarcados. Quantidades representam uso culinário (inclusive ingredientes já cozidos), sem conversão automática para embalagens ou peso cru. O material não é prescrição nutricional; as receitas ainda exigem validação em cozinha. A compra/entrega automática no checkout continua pendente de configuração do vendedor.

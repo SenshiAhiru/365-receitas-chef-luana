@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node server.mjs",
     "build": "node build.mjs",
-    "test": "node --test tests/recipe-access.test.mjs",
+    "test": "node --test tests/recipe-access.test.mjs tests/cardapio.test.mjs",
     "recipes:seal": "node tools/seal-recipes.mjs"
   }
 }
