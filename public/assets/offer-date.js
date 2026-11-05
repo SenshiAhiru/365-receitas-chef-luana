@@ -5,7 +5,7 @@
   const update = () => {
     const today = format.format(new Date());
     date.textContent = today;
-    banner.setAttribute('aria-label', `Confira as ofertas de hoje: ${today}. Ver planos`);
+    banner.setAttribute('aria-label', `A promoção dessa página acaba no dia ${today}. Ver planos`);
   };
   update();
   setInterval(update, 60000);
