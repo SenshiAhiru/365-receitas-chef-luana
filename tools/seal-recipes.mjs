@@ -1,12 +1,15 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createCipheriv, randomBytes } from 'node:crypto';
 process.loadEnvFile('.env.local');
-const data = await readFile('private-source/recipes.json');
+const lang = process.argv[2];
+if (lang && !['en','es'].includes(lang)) throw new Error('Unknown language');
+const suffix = lang ? '.' + lang : '';
+const data = await readFile('private-source/recipes' + suffix + '.json');
 const recipes = JSON.parse(data);
-if (recipes.length !== 500 || new Set(recipes.map(r => r.title)).size !== 500) throw new Error('Expected 500 unique recipes');
+if (recipes.length !== 500 || new Set(recipes.map(r => r.id)).size !== 500 || (!lang && new Set(recipes.map(r => r.title)).size !== 500)) throw new Error('Expected 500 unique recipes');
 const iv = randomBytes(12), key = Buffer.from(process.env.RECIPE_SECRET, 'base64');
 const cipher = createCipheriv('aes-256-gcm', key, iv);
 const encrypted = Buffer.concat([cipher.update(data), cipher.final()]);
 await mkdir('private', { recursive: true });
-await writeFile('private/recipes.enc.json', JSON.stringify({ version: 1, iv: iv.toString('base64'), tag: cipher.getAuthTag().toString('base64'), data: encrypted.toString('base64') }));
+await writeFile('private/recipes' + suffix + '.enc.json', JSON.stringify({ version: 1, iv: iv.toString('base64'), tag: cipher.getAuthTag().toString('base64'), data: encrypted.toString('base64') }));
 console.log('Sealed 500 recipes. Source and key remain outside Git.');

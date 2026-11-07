@@ -3,8 +3,9 @@ export function GET(request) {
   try {
     const current = session(request);
     if (!current) return json({ error: 'Entre para acessar suas receitas.' }, 401);
-    const allowed = recipes().filter(recipe => recipe.id <= limits[current.plan]);
-    const id = new URL(request.url).searchParams.get('id');
+    const params = new URL(request.url).searchParams;
+    const allowed = recipes(params.get('lang')).filter(recipe => recipe.id <= limits[current.plan]);
+    const id = params.get('id');
     if (id) {
       const recipe = allowed.find(recipe => String(recipe.id) === id);
       return recipe ? json(recipe) : json({ error: 'Receita indisponível neste plano.' }, 404);

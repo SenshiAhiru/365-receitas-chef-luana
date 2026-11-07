@@ -21,7 +21,7 @@
   ],
   "functions": {
     "api/recipes.mjs": {
-      "includeFiles": "private/recipes.enc.json"
+      "includeFiles": "private/recipes*.enc.json"
     },
     "api/cardapio.mjs": {
       "includeFiles": "private/recipes.enc.json"
