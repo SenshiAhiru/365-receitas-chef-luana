@@ -4,6 +4,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "rewrites": [
+    { "source": "/upes", "destination": "/upes/index.html" },
     { "source": "/ofertas", "destination": "/ofertas/index.html" },
     { "source": "/oferta", "destination": "/oferta/index.html" },
     {
